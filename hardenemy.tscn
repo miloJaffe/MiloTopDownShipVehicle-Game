@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://brwndicthtm5v"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_8up3t"]
+[ext_resource type="Texture2D" uid="uid://b5ohb1b28jswv" path="res://Tanks Theme/PNG/Retina/tank_red.png" id="3_m3ixt"]
+[ext_resource type="PackedScene" uid="uid://b2qbv2tdn3kal" path="res://enemy_cannon.tscn" id="6_sdur5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hn8gk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_m3ixt")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2jhv2"]
+radius = 56.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8nptj"]
+radius = 700.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynfdh"]
+size = Vector2(4272, 1400)
+
+[node name="hardenemy" type="CharacterBody2D" groups=["enemy"]]
+z_index = 10
+collision_mask = 2
+script = ExtResource("1_8up3t")
+rot_speed = 5.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_hn8gk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2jhv2")
+
+[node name="DetectRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
+modulate = Color(0.747928, 0.0372851, 0.0206826, 1)
+shape = SubResource("CircleShape2D_8nptj")
+
+[node name="EnemyGun" parent="." instance=ExtResource("6_sdur5")]
+
+[node name="InRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="InRange"]
+position = Vector2(2080, 4)
+shape = SubResource("RectangleShape2D_ynfdh")
+
+[connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
+[connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]
+[connection signal="body_entered" from="InRange" to="." method="_on_in_range_body_entered"]
+[connection signal="body_exited" from="InRange" to="." method="_on_in_range_body_exited"]

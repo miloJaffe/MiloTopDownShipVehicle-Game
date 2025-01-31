@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb31i7pln0t68"]
+
+[ext_resource type="Script" path="res://start_menu_scene.gd" id="1_a4ln4"]
+[ext_resource type="Texture2D" uid="uid://dfvvfyxk5fhhf" path="res://icon - Copy (2).svg" id="2_esftj"]
+
+[node name="StartMenuScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a4ln4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 80.0
+offset_right = 808.0
+offset_bottom = 488.0
+icon = ExtResource("2_esftj")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

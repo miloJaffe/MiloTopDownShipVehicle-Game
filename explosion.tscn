@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://1o3nc3brntdb"]
+
+[ext_resource type="Texture2D" uid="uid://bvgx1rbuqd44m" path="res://Tanks Theme/PNG/Default size/explosionSmoke1.png" id="1_evc6q"]
+[ext_resource type="Script" path="res://explosion.gd" id="1_ooino"]
+[ext_resource type="Texture2D" uid="uid://w32ifb1ibj30" path="res://Tanks Theme/PNG/Default size/explosionSmoke2.png" id="2_8bejh"]
+[ext_resource type="Texture2D" uid="uid://cbjqo4gpbibxt" path="res://Tanks Theme/PNG/Default size/explosionSmoke3.png" id="3_jc3qp"]
+[ext_resource type="Texture2D" uid="uid://dxod6f1p83dda" path="res://Tanks Theme/PNG/Default size/explosionSmoke4.png" id="4_51ipf"]
+[ext_resource type="Texture2D" uid="uid://dknyfxoqf38c2" path="res://Tanks Theme/PNG/Default size/explosionSmoke5.png" id="5_siix7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dvxot"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_evc6q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8bejh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jc3qp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_51ipf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_siix7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="explosion" type="Node2D"]
+script = ExtResource("1_ooino")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dvxot")
+autoplay = "default"
+frame = 4
+frame_progress = 0.733417
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

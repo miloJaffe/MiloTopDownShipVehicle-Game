@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://d0r3cx7napjt2"]
+
+[ext_resource type="Script" path="res://enemy_cannon.gd" id="1_h87kl"]
+[ext_resource type="PackedScene" uid="uid://cl8moa2hvj8d4" path="res://bullet.tscn" id="2_j5ntj"]
+[ext_resource type="Texture2D" uid="uid://b744fnhwi7rmq" path="res://Tanks Theme/PNG/Retina/tankDark_barrel1.png" id="3_keyrg"]
+[ext_resource type="Texture2D" uid="uid://cnqjel5fjij6w" path="res://Tanks Theme/PNG/Default size/explosion1.png" id="4_kwug1"]
+[ext_resource type="Texture2D" uid="uid://btqpy55ey3mhx" path="res://Tanks Theme/PNG/Retina/explosion2.png" id="5_31lp5"]
+[ext_resource type="Texture2D" uid="uid://be13mr8kv1vfs" path="res://Tanks Theme/PNG/Retina/explosion3.png" id="6_q4cbu"]
+[ext_resource type="Texture2D" uid="uid://dk8isheb3pgsn" path="res://Tanks Theme/PNG/Retina/explosion4.png" id="7_l4jr5"]
+[ext_resource type="Texture2D" uid="uid://c7h0cv0frwflq" path="res://Tanks Theme/PNG/Retina/explosion5.png" id="8_webui"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iksqd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kwug1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_31lp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_q4cbu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_l4jr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_webui")
+}],
+"loop": false,
+"name": &"fire",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"load",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aiysm"]
+size = Vector2(127, 64)
+
+[node name="player_cannon" type="Area2D"]
+script = ExtResource("1_h87kl")
+detect_radius = 500
+CbObj = ExtResource("2_j5ntj")
+
+[node name="Gun" type="Sprite2D" parent="."]
+scale = Vector2(0.984, 0.5)
+texture = ExtResource("3_keyrg")
+
+[node name="Marker2D" type="Marker2D" parent="Gun"]
+position = Vector2(66, 0)
+
+[node name="fire" type="AnimatedSprite2D" parent="Gun/Marker2D"]
+sprite_frames = SubResource("SpriteFrames_iksqd")
+animation = &"load"
+autoplay = "load"
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="DetectRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_aiysm")
+
+[connection signal="animation_finished" from="Gun/Marker2D/fire" to="." method="_on_fire_animation_finished" flags=18]
+[connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered" flags=18]
+[connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited" flags=18]

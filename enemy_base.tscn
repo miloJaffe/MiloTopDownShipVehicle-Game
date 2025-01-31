@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm6hi41fuv3ms"]
+
+[ext_resource type="Texture2D" uid="uid://niy51w5eh1yu" path="res://Explosion pack (60 assets)/SciFi/Tilesheet/scifi_tilesheet.png" id="1_cwrf3"]
+[ext_resource type="Script" path="res://enemy_base.gd" id="1_y570j"]
+[ext_resource type="PackedScene" uid="uid://btaa7byr513gw" path="res://enemy.tscn" id="2_jg766"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bru07"]
+
+[node name="EnemyBase" type="RigidBody2D"]
+z_index = 10
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+script = ExtResource("1_y570j")
+enemies = ExtResource("2_jg766")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bru07")
+
+[node name="ScifiTilesheet" type="Sprite2D" parent="."]
+texture = ExtResource("1_cwrf3")
+region_enabled = true
+region_rect = Rect2(1028, 68, 56, 56)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

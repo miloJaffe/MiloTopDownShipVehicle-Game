@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://bq1c52wjm2wrb"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_2bxgo"]
+[ext_resource type="PackedScene" uid="uid://cl8moa2hvj8d4" path="res://bullet.tscn" id="2_b5vww"]
+[ext_resource type="Texture2D" uid="uid://bs7jo3612mouh" path="res://Tanks Theme/PNG/Default size/tankBody_bigRed.png" id="2_gmjtw"]
+[ext_resource type="Texture2D" uid="uid://cyf262ltu2gf1" path="res://Tanks Theme/PNG/Default size/tankDark_barrel1.png" id="3_0x0s6"]
+[ext_resource type="Texture2D" uid="uid://cnqjel5fjij6w" path="res://Tanks Theme/PNG/Default size/explosion1.png" id="5_h1aqt"]
+[ext_resource type="Texture2D" uid="uid://bvja1sbhxgwp5" path="res://Tanks Theme/PNG/Default size/explosion2.png" id="6_2oh77"]
+[ext_resource type="Texture2D" uid="uid://c0pwad1gaertm" path="res://Tanks Theme/PNG/Default size/explosion3.png" id="7_poomt"]
+[ext_resource type="Texture2D" uid="uid://cx2i36dw42r11" path="res://Tanks Theme/PNG/Default size/explosion4.png" id="8_c3a8t"]
+[ext_resource type="Texture2D" uid="uid://b1qxebp1at4gk" path="res://Tanks Theme/PNG/Default size/explosion5.png" id="9_xq0i8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cbsxi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uv4s2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_h1aqt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2oh77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_poomt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_c3a8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xq0i8")
+}],
+"loop": false,
+"name": &"fireburst",
+"speed": 15.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"load",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 3
+script = ExtResource("1_2bxgo")
+bullet = ExtResource("2_b5vww")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cbsxi")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.65, 0.65)
+
+[node name="CoolDown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="TankBodyBigRed" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(0, -1)
+rotation = 1.5708
+texture = ExtResource("2_gmjtw")
+
+[node name="TankDarkBarrel1" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(4, -1)
+texture = ExtResource("3_0x0s6")
+
+[node name="Marker2D" type="Marker2D" parent="TankDarkBarrel1"]
+
+[node name="fire" type="AnimatedSprite2D" parent="TankDarkBarrel1"]
+position = Vector2(30, 0)
+sprite_frames = SubResource("SpriteFrames_uv4s2")
+animation = &"load"
+autoplay = "load"
+
+[connection signal="timeout" from="CoolDown" to="." method="_on_cool_down_timeout"]
+[connection signal="animation_finished" from="TankDarkBarrel1/fire" to="." method="_on_fire_animation_finished"]

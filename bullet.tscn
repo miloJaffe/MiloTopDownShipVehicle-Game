@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cl8moa2hvj8d4"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_b61p8"]
+[ext_resource type="PackedScene" uid="uid://1o3nc3brntdb" path="res://explosion.tscn" id="2_cf1uo"]
+[ext_resource type="Texture2D" uid="uid://64rmtcw6m0k8" path="res://Tanks Theme/PNG/Default size/bulletDark1_outline.png" id="2_waldl"]
+[ext_resource type="Texture2D" uid="uid://cpfanutm0phhf" path="res://Tanks Theme/PNG/Default size/bulletBlue1_outline.png" id="3_e7v4a"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ta57u"]
+radius = 7.0
+height = 20.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rbdnu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_waldl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_e7v4a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_b61p8")
+ExplosionObj = ExtResource("2_cf1uo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ta57u")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2.98023e-08, 0)
+rotation = 1.5708
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_rbdnu")
+autoplay = "default"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
