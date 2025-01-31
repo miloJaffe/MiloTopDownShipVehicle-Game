@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsphwb6u5sa0h"
-path="res://.godot/imported/blue.png-f1510bbc939ad77fcf2a03c5ac629a2c.ctex"
+uid="uid://c0pwad1gaertm"
+path="res://.godot/imported/explosion3.png-402920252da926ec701ac0c1225253fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tanks Theme/PNG/Default size/blue.png"
-dest_files=["res://.godot/imported/blue.png-f1510bbc939ad77fcf2a03c5ac629a2c.ctex"]
+source_file="res://Tanks Theme/PNG/Default size/explosion3.png"
+dest_files=["res://.godot/imported/explosion3.png-402920252da926ec701ac0c1225253fd.ctex"]
 
 [params]
 

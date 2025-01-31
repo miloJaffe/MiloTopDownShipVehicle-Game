@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsphwb6u5sa0h"
-path="res://.godot/imported/blue.png-f1510bbc939ad77fcf2a03c5ac629a2c.ctex"
+uid="uid://cft06j5tx76ea"
+path="res://.godot/imported/bulletDark2_outline.png-d4323bfa9578de7cb4abd7f6511d7c80.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tanks Theme/PNG/Default size/blue.png"
-dest_files=["res://.godot/imported/blue.png-f1510bbc939ad77fcf2a03c5ac629a2c.ctex"]
+source_file="res://Tanks Theme/PNG/Default size/bulletDark2_outline.png"
+dest_files=["res://.godot/imported/bulletDark2_outline.png-d4323bfa9578de7cb4abd7f6511d7c80.ctex"]
 
 [params]
 

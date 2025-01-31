@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsphwb6u5sa0h"
-path="res://.godot/imported/blue.png-f1510bbc939ad77fcf2a03c5ac629a2c.ctex"
+uid="uid://bcvnnkcbgp1vf"
+path="res://.godot/imported/crateMetal_side.png-f96371ba3d1c8e781687660ee5654504.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tanks Theme/PNG/Default size/blue.png"
-dest_files=["res://.godot/imported/blue.png-f1510bbc939ad77fcf2a03c5ac629a2c.ctex"]
+source_file="res://Tanks Theme/PNG/Default size/crateMetal_side.png"
+dest_files=["res://.godot/imported/crateMetal_side.png-f96371ba3d1c8e781687660ee5654504.ctex"]
 
 [params]
 
